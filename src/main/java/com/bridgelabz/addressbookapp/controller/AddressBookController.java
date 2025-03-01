@@ -1,5 +1,6 @@
 package com.bridgelabz.addressbookapp.controller;
 
+import com.bridgelabz.addressbookapp.dto.AddressBookDto;
 import com.bridgelabz.addressbookapp.model.AddressBook;
 import com.bridgelabz.addressbookapp.services.AddressBookService;
 import org.slf4j.Logger;
@@ -19,14 +20,14 @@ public class AddressBookController {
 
     //To get all the addresses stored in the database
     @GetMapping("/getall")
-    public List<AddressBook> getAllAddress(){
+    public List<AddressBookDto> getAllAddress(){
         logger.info("All address endpoint called ");
         return addressBookService.getAllAddresses();
     }
 
     //To get the address by id
     @GetMapping("/get/{id}")
-    public Optional<AddressBook> getAddressById(@PathVariable Long id){
+    public AddressBookDto getAddressById(@PathVariable Long id){
         logger.info("By id address endpoint called ");
         return addressBookService.getAddressById(id);
     }
@@ -40,7 +41,7 @@ public class AddressBookController {
 
     //To update the existing address in the database
     @PutMapping("/update/{id}")
-    public AddressBook updateAddress(@PathVariable Long id,@RequestBody AddressBook addressBook){
+    public AddressBookDto updateAddress(@PathVariable Long id, @RequestBody AddressBook addressBook){
         logger.info("update address end point called");
         return addressBookService.updateAddress(id,addressBook);
     }
