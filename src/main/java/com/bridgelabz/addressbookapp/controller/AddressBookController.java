@@ -6,9 +6,12 @@ import com.bridgelabz.addressbookapp.services.AddressBookService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.lang.model.util.Elements;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @RestController
@@ -48,7 +51,7 @@ public class AddressBookController {
 
     //To delete the address from db
     @DeleteMapping("/delete/{id}")
-    public String deleteAddress(@PathVariable Long id){
+    public ResponseEntity<Map<String, String>> deleteAddress(@PathVariable Long id){
         logger.info("Delete address end point called");
         return addressBookService.deleteAddressById(id);
     }
